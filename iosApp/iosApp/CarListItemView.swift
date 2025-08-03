@@ -4,17 +4,28 @@ import shared
 struct CarListItemView : View {
     let car: Car
     
+    var formattedPrice: String {
+        car.customerPrice >= 1000
+        ? "\(Int(car.customerPrice / 1000))k"
+        : "\(Int(car.customerPrice))"
+    }
+    
     var body: some View {
         VStack {
             HStack {
                 Rectangle()
-                    .frame(width: 72, height: 64)
+                    .frame(width: 96, height: 72)
                 VStack(alignment: .leading) {
                     Text("\(car.make) \(car.model)")
                         .foregroundColor(.black.opacity(0.45))
-                    Text("Price: \(car.customerPrice)")
+                    Text("Price: \(formattedPrice)")
                         .foregroundColor(.black.opacity(0.45))
-                    Text("Rating: \(car.rating)")
+                    HStack(spacing: 2) {
+                        ForEach(0..<min(car.rating, 5), id: \.self) { _ in
+                            Image(systemName: "star.fill")
+                                .foregroundColor(Color(hue: 19/360, saturation: 0.91, brightness: 0.99))
+                        }
+                    }
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)

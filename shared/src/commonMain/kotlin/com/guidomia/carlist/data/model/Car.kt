@@ -1,5 +1,8 @@
 package com.guidomia.carlist.data.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Car(
     val consList: List<String> = emptyList(),
     val customerPrice: Double,

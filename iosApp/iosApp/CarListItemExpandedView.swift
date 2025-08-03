@@ -19,6 +19,7 @@ struct CarListItemExpandedView : View {
                     Text(pro)
                         .foregroundColor(.black)
                 }
+                .padding(.leading, 8)
             }
             
             Text("Cons:")
@@ -35,6 +36,7 @@ struct CarListItemExpandedView : View {
                     Text(con)
                         .foregroundColor(.black)
                 }
+                .padding(.leading, 8)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)

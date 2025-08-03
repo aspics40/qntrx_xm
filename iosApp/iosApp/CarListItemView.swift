@@ -41,6 +41,7 @@ struct CarListItemView : View {
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .contentShape(Rectangle())
                 .onTapGesture {
                     if isExpanded {
                         expandedCarName = ""

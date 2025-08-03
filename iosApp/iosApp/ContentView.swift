@@ -7,10 +7,14 @@ struct ContentView: View {
 
     var body: some View {
         List(cars, id: \.model) { car in
-            VStack(alignment: .leading) {
-                Text("\(car.make) \(car.model)")
-                Text("Racing: \(car.rating)")
-                Text("Price: \(car.customerPrice)")
+            HStack {
+                Rectangle()
+                    .frame(width: 72, height: 64)
+                VStack(alignment: .leading) {
+                    Text("\(car.make) \(car.model)")
+                    Text("Price: \(car.customerPrice)")
+                    Text("Rating: \(car.rating)")
+                }
             }
         }
         .onAppear {

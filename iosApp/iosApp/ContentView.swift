@@ -12,6 +12,19 @@ struct ContentView: View {
                     Rectangle()
                         .frame(maxWidth: .infinity)
                         .frame(height: 256)
+                        .overlay(
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Tacoma 2021")
+                                    .font(.title)
+                                    .foregroundColor(.white)
+                                Text("Get yours now")
+                                    .font(.subheadline)
+                                    .foregroundColor(.white)
+                            }
+                                .padding()
+                                .frame(maxWidth: .infinity, alignment: .leading),
+                            alignment: .bottom
+                        )
                     VStack(alignment: .leading) {
                         ForEach(cars, id: \.model) { car in
                             CarListItemView(car: car)

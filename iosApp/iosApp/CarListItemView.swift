@@ -30,7 +30,7 @@ struct CarListItemView : View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
-            .background(Color(hue: 0, saturation: 0, brightness: 0.52))
+            .background(Color(hue: 0, saturation: 0, brightness: 0.84))
             
             Rectangle()
                 .fill(Color.orange)

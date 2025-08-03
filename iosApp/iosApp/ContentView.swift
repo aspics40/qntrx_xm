@@ -17,10 +17,9 @@ struct ContentView: View {
                             CarListItemView(car: car)
                         }
                     }
-                    .background(.blue)
                 }
             }
-            .background(.purple)
+            .background(.white)
             .navigationBarTitleDisplayMode(.inline)
             .padding(0)
             .onAppear {

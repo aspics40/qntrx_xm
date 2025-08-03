@@ -42,8 +42,11 @@ struct CarListItemView : View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .onTapGesture {
-                    expandedCarName = carName
-                    print("Clicked \(carName)")
+                    if isExpanded {
+                        expandedCarName = ""
+                    } else {
+                        expandedCarName = carName
+                    }
                 }
                 if isExpanded {
                     CarListItemExpandedView(car: car)

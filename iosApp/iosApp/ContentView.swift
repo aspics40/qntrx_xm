@@ -19,6 +19,7 @@ struct ContentView: View {
                                 Text("Tacoma 2021")
                                     .font(.title)
                                     .foregroundColor(.white)
+                                    .fontWeight(.bold)
                                 Text("Get yours now")
                                     .font(.subheadline)
                                     .foregroundColor(.white)

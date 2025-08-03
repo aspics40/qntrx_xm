@@ -25,20 +25,23 @@ struct CarListItemView : View {
                     imageForCar("\(car.make) \(car.model)")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 96, height: 72)
+                        .frame(width: 110, height: 64)
                         .clipped()
                     VStack(alignment: .leading) {
                         Text("\(car.make) \(car.model)")
                             .foregroundColor(.black.opacity(0.45))
+                            .font(.title3)
                         Text("Price: \(formattedPrice)")
                             .foregroundColor(.black.opacity(0.45))
-                        HStack(spacing: 2) {
+                            .font(.subheadline)
+                        HStack(spacing: 8) {
                             ForEach(0..<min(car.rating, 5), id: \.self) { _ in
                                 Image(systemName: "star.fill")
                                     .foregroundColor(Color(hue: 19/360, saturation: 0.91, brightness: 0.99))
                             }
                         }
                     }
+                    .padding(.leading, 6)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .contentShape(Rectangle())

@@ -1,11 +1,16 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    kotlin("plugin.serialization") version "2.2.0"
 }
 
 kotlin {
+    val xcframeworkName = "shared"
+    val xcFramework = XCFramework(xcframeworkName)
+
     androidTarget {
         compilations.all {
             compileTaskProvider.configure {
@@ -22,8 +27,9 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "shared"
+            baseName = xcframeworkName
             isStatic = true
+            xcFramework.add(this)
         }
     }
 

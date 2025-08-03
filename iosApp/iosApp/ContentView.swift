@@ -4,6 +4,7 @@ import shared
 struct ContentView: View {
     private let contentRepository = ContentRepository()
     @State private var cars: [Car] = []
+    @State private var expandedCarName: String = ""
     
     var body: some View {
         NavigationStack {
@@ -27,8 +28,8 @@ struct ContentView: View {
                             alignment: .bottom
                         )
                     VStack(alignment: .leading) {
-                        ForEach(cars, id: \.model) { car in
-                            CarListItemView(car: car)
+                        ForEach(cars, id: \.model) {car in
+                            CarListItemView(car: car, expandedCarName: $expandedCarName)
                         }
                     }
                 }
@@ -40,6 +41,7 @@ struct ContentView: View {
                 contentRepository.getCars() { result, error in
                     if let result = result {
                         cars = result
+                        expandedCarName = "\(cars.first?.make ?? "") \(cars.first?.model ?? "")"
                     } else if let error = error {
                         print("Error: \(error)")
                     }

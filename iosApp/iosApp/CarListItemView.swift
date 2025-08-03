@@ -47,6 +47,7 @@ struct CarListItemView : View {
                 }
                 if isExpanded {
                     CarListItemExpandedView(car: car)
+                        .padding(.leading, 8)
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)

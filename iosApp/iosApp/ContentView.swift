@@ -52,7 +52,7 @@ struct ContentView: View {
                     HStack {
                         Text("GUIDOMIA")
                         Spacer()
-                        Image(systemName: "line.3.horizontal")
+//                        Image(systemName: "line.3.horizontal") Unused and non-functional - removed
                     }
                 }
             }

@@ -9,9 +9,10 @@ struct ContentView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 0) {
-                    Rectangle()
-                        .frame(maxWidth: .infinity)
+                    Image("Tacoma")
+                        .resizable()
                         .frame(height: 256)
+                        .clipped()
                         .overlay(
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("Tacoma 2021")

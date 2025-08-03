@@ -13,8 +13,11 @@ struct CarListItemView : View {
     var body: some View {
         VStack {
             HStack {
-                Rectangle()
+                imageForCar("\(car.make) \(car.model)")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: 96, height: 72)
+                    .clipped()
                 VStack(alignment: .leading) {
                     Text("\(car.make) \(car.model)")
                         .foregroundColor(.black.opacity(0.45))
@@ -37,5 +40,10 @@ struct CarListItemView : View {
                 .frame(height: 4)
                 .padding(.horizontal)
         }
+    }
+    
+    func imageForCar(_ model: String) -> Image {
+        let key = model.replacingOccurrences(of: " ", with: "_")
+        return Image(key)
     }
 }

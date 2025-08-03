@@ -14,23 +14,33 @@ struct ContentView: View {
                         .frame(height: 256)
                     VStack(alignment: .leading) {
                         ForEach(cars, id: \.model) { car in
-                            HStack {
-                                Rectangle()
-                                    .frame(width: 72, height: 64)
-                                VStack(alignment: .leading) {
-                                    Text("\(car.make) \(car.model)")
-                                    Text("Price: \(car.customerPrice)")
-                                    Text("Rating: \(car.rating)")
+                            VStack {
+                                HStack {
+                                    Rectangle()
+                                        .frame(width: 72, height: 64)
+                                    VStack(alignment: .leading) {
+                                        Text("\(car.make) \(car.model)")
+                                            .foregroundColor(.black.opacity(0.45))
+                                        Text("Price: \(car.customerPrice)")
+                                            .foregroundColor(.black.opacity(0.45))
+                                        Text("Rating: \(car.rating)")
+                                    }
                                 }
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding()
+                                .background(Color(hue: 0, saturation: 0, brightness: 0.52))
+                                
+                                Rectangle()
+                                    .fill(Color.orange)
+                                    .frame(height: 4)
+                                    .padding(.horizontal)
                             }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(.yellow)
                         }
                     }
                     .background(.blue)
                 }
             }
-            .background(.red)
+            .background(.purple)
             .navigationBarTitleDisplayMode(.inline)
             .padding(0)
             .onAppear {
@@ -51,6 +61,9 @@ struct ContentView: View {
                     }
                 }
             }
+            .toolbarBackground(Color(hue: 19/360, saturation: 0.91, brightness: 0.99), for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarColorScheme(.dark, for: .navigationBar)
         }
     }
 }

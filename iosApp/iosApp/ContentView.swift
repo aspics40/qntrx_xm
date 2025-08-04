@@ -6,6 +6,19 @@ struct ContentView: View {
     @State private var cars: [Car] = []
     @State private var expandedCarName: String = ""
     
+    @State private var selectedMake: String = ""
+    @State private var selectedModel: String = ""
+    
+    @State var showPickerMake = false
+    @State var showPickerModel = false
+    
+    var filteredCars: [Car] {
+        cars.filter { car in
+            (selectedMake.isEmpty || car.make == selectedMake) &&
+            (selectedModel.isEmpty || car.model == selectedModel)
+        }
+    }
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -28,8 +41,62 @@ struct ContentView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading),
                             alignment: .bottom
                         )
+                    
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Filters")
+                            .font(.title3)
+                            .foregroundColor(.white)
+                        Text(selectedMake.isEmpty ? "Any Make" : selectedMake)
+                            .foregroundColor(selectedMake.isEmpty ? .gray : .primary)
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(Color(.systemGray6))
+                            .cornerRadius(8)
+                            .onTapGesture { showPickerMake = true }
+                            .sheet(isPresented: $showPickerMake) {
+                                List {
+                                    Button("All") {
+                                        selectedMake = ""
+                                        showPickerMake = false
+                                    }
+                                    ForEach(Array(Set(cars.map { $0.make })), id: \.self) { make in
+                                        Button(make) {
+                                            selectedMake = make
+                                            showPickerMake = false
+                                        }
+                                    }
+                                }
+                            }
+                        
+                        Text(selectedModel.isEmpty ? "Any Model" : selectedModel)
+                            .foregroundColor(selectedModel.isEmpty ? .gray : .primary)
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(Color(.systemGray6))
+                            .cornerRadius(8)
+                            .onTapGesture { showPickerModel = true }
+                            .sheet(isPresented: $showPickerModel) {
+                                List {
+                                    Button("All") {
+                                        selectedModel = ""
+                                        showPickerModel = false
+                                    }
+                                    ForEach(Array(Set(cars.map { $0.make })), id: \.self) { make in
+                                        Button(make) {
+                                            selectedModel = make
+                                            showPickerModel = false
+                                        }
+                                    }
+                                }
+                            }
+                    }
+                    .padding()
+                    .background(Color(hue: 0, saturation: 0, brightness: 0.52))
+                    .cornerRadius(8)
+                    .padding()
+                    
                     VStack(alignment: .leading) {
-                        ForEach(cars, id: \.model) {car in
+                        ForEach(filteredCars, id: \.model) {car in
                             CarListItemView(car: car, expandedCarName: $expandedCarName)
                         }
                     }
@@ -53,7 +120,6 @@ struct ContentView: View {
                     HStack {
                         Text("GUIDOMIA")
                         Spacer()
-//                        Image(systemName: "line.3.horizontal") Unused and non-functional - removed
                     }
                 }
             }
